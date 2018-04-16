@@ -9,7 +9,7 @@ from math import floor, ceil
 from pyfftw.interfaces import numpy_fft as fft
 
 def main():
-    with h5py.File('data.h5','r') as h5f:
+    with h5py.File('data.h5', 'r') as h5f:
         kernel = h5f['dataset_1'][:][10:-10,12:-12,:]
 
     # cut the low frequency components out, since we know they don't

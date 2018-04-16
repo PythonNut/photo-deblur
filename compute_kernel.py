@@ -24,7 +24,7 @@ def main():
     with h5py.File('data.h5', 'w') as h5f:
         h5f.create_dataset('dataset_1', data=kernel)
 
-    imwrite('kernel.png', np.fft.fftshift(kernel)/kernel.max())
+    imwrite('kernel.png', np.fft.fftshift(kernel) / kernel.max())
 
 if __name__ == '__main__':
     main()

@@ -39,3 +39,7 @@ Install Hugin:
 Align the raw images:
 
     $ make align
+
+Estimate the kernel of the focus blur:
+
+    $ make kernel

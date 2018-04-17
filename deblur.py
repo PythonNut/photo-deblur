@@ -58,7 +58,10 @@ def main(blur_name, kernel_data_name, deconvolved_name):
 
     blur = plt.imread(blur_name)[:, :, :3]
 
+    print("Kernel has size: " + str(kernel.shape[:2]))
+    print("Blurred image has size: " + str(blur.shape[:2]))
     kernel, blur = resize_to_fit(kernel, blur)
+    print("Cropped to size: " + str(blur.shape[:2]))
 
     # deconvolved = restoration.richardson_lucy(blur, kernel_small)
 

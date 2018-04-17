@@ -43,3 +43,8 @@ Align the raw images:
 Estimate the kernel of the focus blur:
 
     $ make kernel
+
+## Further reading
+
+* http://yuzhikov.com/articles/BlurredImagesRestoration1.htm
+* http://yuzhikov.com/articles/BlurredImagesRestoration2.htm

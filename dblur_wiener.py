@@ -21,6 +21,8 @@ def main(blur_name, kernel_data_name, deconvolved_name):
     x, y, _ = kernel.shape
     ksize = 20
     kernel_small = kernel[floor(x/2 - ksize):ceil(x/2 + ksize), floor(y/2-ksize):ceil(y/2 + ksize), :]
+    kernel_small[ksize//2,:] = (kernel_small[ksize//2 + 1,:] + kernel_small[ksize//2 - 1,:])/2
+    kernel_small[:,ksize//2] = (kernel_small[:,ksize//2 + 1] + kernel_small[:,ksize//2 - 1])/2
 
     kernel_r, kernel_g, kernel_b = np.moveaxis(kernel_small, 2, 0)
     kernel_r /= kernel_r.sum()

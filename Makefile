@@ -1,5 +1,5 @@
 .PHONY: all
-all: align kernel
+all: align kernel deblur
 
 img_aligned/trees1_blurred.tif img_aligned/trees1_sharp.tif: img_raw/trees1_blurred.jpg img_raw/trees1_sharp.jpg
 	rm -rf work
@@ -27,3 +27,9 @@ kernel/trees1_data.h5 kernel/trees1_kernel.png: img_aligned/trees1_blurred.tif i
 
 .PHONY: kernel
 kernel: kernel/trees1_data.h5 kernel/trees1_kernel.png
+
+output/trees1_deconvolved.jpg: img_raw/trees2_blurred.jpg kernel/trees1_data.h5 deblur.py
+	time ./deblur.py img_raw/trees2_blurred.jpg kernel/trees1_data.h5 output/trees1_deconvolved.jpg
+
+.PHONY: deblur
+deblur: output/trees1_deconvolved.jpg

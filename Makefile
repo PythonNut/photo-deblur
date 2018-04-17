@@ -1,3 +1,6 @@
+.PHONY: all
+all: align kernel
+
 img_aligned/trees1_blurred.tif img_aligned/trees1_sharp.tif: img_raw/trees1_blurred.jpg img_raw/trees1_sharp.jpg
 	rm -rf work
 	mkdir -p work

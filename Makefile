@@ -23,13 +23,15 @@ img_aligned/trees2_blurred.tif img_aligned/trees2_sharp.tif: img_raw/trees2_blur
 align: img_aligned/trees1_blurred.tif img_aligned/trees1_sharp.tif img_aligned/trees2_blurred.tif img_aligned/trees2_sharp.tif
 
 kernel/trees1_data.h5 kernel/trees1_kernel.png: img_aligned/trees1_blurred.tif img_aligned/trees1_sharp.tif compute_kernel.py
+	mkdir -p kernel
 	time ./compute_kernel.py img_aligned/trees1_blurred.tif img_aligned/trees1_sharp.tif kernel/trees1_data.h5 kernel/trees1_kernel.png
 
 .PHONY: kernel
 kernel: kernel/trees1_data.h5 kernel/trees1_kernel.png
 
-output/trees1_deconvolved.jpg: img_raw/trees2_blurred.jpg kernel/trees1_data.h5 deblur.py
-	time ./deblur.py img_raw/trees2_blurred.jpg kernel/trees1_data.h5 output/trees1_deconvolved.jpg
+output/trees2_deconvolved.jpg: img_raw/trees2_blurred.jpg kernel/trees1_data.h5 deblur.py
+	mkdir -p output
+	time ./deblur.py img_raw/trees2_blurred.jpg kernel/trees1_data.h5 output/trees2_deconvolved.jpg
 
 .PHONY: deblur
-deblur: output/trees1_deconvolved.jpg
+deblur: output/trees2_deconvolved.jpg

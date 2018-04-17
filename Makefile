@@ -23,7 +23,7 @@ img_aligned/trees2_blurred.tif img_aligned/trees2_sharp.tif: img_raw/trees2_blur
 align: img_aligned/trees1_blurred.tif img_aligned/trees1_sharp.tif img_aligned/trees2_blurred.tif img_aligned/trees2_sharp.tif
 
 kernel/trees1_data.h5 kernel/trees1_kernel.png: img_aligned/trees1_blurred.tif img_aligned/trees1_sharp.tif compute_kernel.py
-	time ./compute_kernel.py img_aligned/trees1_blurred.tif img_aligned/trees1_sharp.tif kernel/trees1_data.h5 trees1_kernel.png
+	time ./compute_kernel.py img_aligned/trees1_blurred.tif img_aligned/trees1_sharp.tif kernel/trees1_data.h5 kernel/trees1_kernel.png
 
 .PHONY: kernel
-kernel: kernel/trees1_data.h5 trees1_kernel.png
+kernel: kernel/trees1_data.h5 kernel/trees1_kernel.png

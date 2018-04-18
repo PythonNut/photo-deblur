@@ -48,3 +48,8 @@ Estimate the kernel of the focus blur:
 
 * http://yuzhikov.com/articles/BlurredImagesRestoration1.htm
 * http://yuzhikov.com/articles/BlurredImagesRestoration2.htm
+* http://aishack.in/tutorials/image-convolution-examples/
+* http://www.naturefocused.com/articles/photography-image-processing-kernel.html
+* http://setosa.io/ev/image-kernels/
+* http://www.robots.ox.ac.uk/~az/lectures/ia/lect2.pdf
+* https://github.com/aurelienpierre/Image-Cases-Studies

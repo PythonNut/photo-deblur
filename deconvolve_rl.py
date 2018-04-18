@@ -18,7 +18,12 @@ def main(blurred_filename, deblurred_filename, blur_diameter, mask_x, mask_y, ma
     confidence = int(confidence)
     neighbors = int(neighbors)
     bias = float(bias)
-    mask = [mask_x, mask_x + mask_w, mask_y + mask_h]
+    mask = [mask_x, mask_x + mask_w, mask_y, mask_y + mask_h]
+    print("Blur diameter: {}".format(blur_diameter))
+    print("Mask: {}".format(mask))
+    print("Confidence: {}".format(confidence))
+    print("Neighbors: {}".format(neighbors))
+    print("Bias: {}".format(bias))
     with Image.open(blurred_filename) as image:
         deblurred_dir, deblurred_file = os.path.split(os.path.abspath(deblurred_filename))
         deblurred_root, deblurred_ext = os.path.splitext(deblurred_file)

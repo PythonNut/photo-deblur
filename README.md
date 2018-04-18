@@ -9,6 +9,7 @@ Done as part of Spring 2018 Camera Lab at Harvey Mudd College.
 * [Python 3](https://www.python.org/)
 * [Tcl/Tk](http://tcl.sourceforge.net/)
 * [Hugin](http://hugin.sourceforge.net/)
+* [LLVM](https://llvm.org/)
 
 ### Setup on macOS
 
@@ -35,6 +36,14 @@ Install Hugin:
     $ brew cask install hugin
     $ ln -s /Applications/Hugin/Hugin.app/Contents/MacOS/align_image_stack /usr/local/bin/
 
+Install up-to-date LLVM:
+
+    $ brew install llvm
+
+Build Richardson-Lucy module:
+
+    $ cd Image-Cases-Studies && python setup.py build_ext --inplace
+
 ### Setup on Arch Linux
 
 Install Python:
@@ -54,6 +63,10 @@ Install Tcl/Tk:
 Install Hugin:
 
     $ sudo pacman -Sy hugin
+
+Build Richardson-Lucy module:
+
+    $ cd Image-Cases-Studies && python setup.py build_ext --inplace
 
 ## Usage
 

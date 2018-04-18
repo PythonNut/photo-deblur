@@ -30,8 +30,12 @@ kernel/trees1_data_unaligned.h5 kernel/trees1_kernel_unaligned.png: img_raw/tree
 	mkdir -p kernel
 	time ./compute_kernel.py img_raw/trees1_blurred.jpg img_raw/trees1_sharp.jpg kernel/trees1_data_unaligned.h5 kernel/trees1_kernel_unaligned.png
 
+kernel/trees1_data_wiener.h5 kernel/trees1_kernel_wiener.png: img_aligned/trees1_blurred.tif img_aligned/trees1_sharp.tif compute_kernel_wiener.py
+	mkdir -p kernel
+	time ./compute_kernel_wiener.py img_aligned/trees1_blurred.tif img_aligned/trees1_sharp.tif kernel/trees1_data_wiener.h5 kernel/trees1_kernel_wiener.png
+
 .PHONY: kernel
-kernel: kernel/trees1_data.h5 kernel/trees1_kernel.png kernel/trees1_data_unaligned.h5 kernel/trees1_kernel_unaligned.png
+kernel: kernel/trees1_data.h5 kernel/trees1_kernel.png kernel/trees1_data_unaligned.h5 kernel/trees1_kernel_unaligned.png kernel/trees1_data_wiener.h5 kernel/trees1_kernel_wiener.png
 
 output/trees2_simple.jpg: img_raw/trees2_blurred.jpg kernel/trees1_data.h5 deblur.py
 	mkdir -p output
@@ -51,10 +55,10 @@ output/trees2_simple_blur_aligned_kernel_unaligned.jpg: img_aligned/trees2_blurr
 
 output/trees2_wiener.jpg: img_raw/trees2_blurred.jpg kernel/trees1_data.h5 deblur_wiener.py
 	mkdir -p output
-	time ./deblur_wiener.py img_raw/trees2_blurred.jpg kernel/trees1_data.h5 output/trees2_wiener.jpg
+	time ./deblur_wiener.py img_raw/trees2_blurred.jpg kernel/trees1_data_wiener.h5 output/trees2_wiener.jpg
 
 .PHONY: deblur
-deblur: output/trees2_simple.jpg output/trees2_simple_blur_aligned.jpg output/trees2_simple_kernel_unaligned.jpg output/trees2_simple_blur_aligned_kernel_unaligned.jpg
+deblur: output/trees2_simple.jpg output/trees2_simple_blur_aligned.jpg output/trees2_simple_kernel_unaligned.jpg output/trees2_simple_blur_aligned_kernel_unaligned.jpg output/trees2_wiener.jpg
 
 .PHONY: clean
 clean:

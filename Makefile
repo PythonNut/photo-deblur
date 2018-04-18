@@ -63,19 +63,19 @@ output/trees2_rl.tif: img_raw/trees2_blurred.jpg deconvolve_rl.py
 
 output/trees2_rl_neighbors_4.tif: img_raw/trees2_blurred.jpg deconvolve_rl.py
 	mkdir -p output
-	time ./deconvolve_rl.py img_raw/trees2_blurred.jpg output/trees2_rl.tif 25 2127 1414 255 255 50 4 5e-4
+	time ./deconvolve_rl.py img_raw/trees2_blurred.jpg output/trees2_rl_neighbors_4.tif 25 2127 1414 255 255 50 4 5e-4
 
 output/trees2_rl_neighbors_2.tif: img_raw/trees2_blurred.jpg deconvolve_rl.py
 	mkdir -p output
-	time ./deconvolve_rl.py img_raw/trees2_blurred.jpg output/trees2_rl.tif 25 2127 1414 255 255 50 2 5e-4
+	time ./deconvolve_rl.py img_raw/trees2_blurred.jpg output/trees2_rl_neighbors_2.tif 25 2127 1414 255 255 50 2 5e-4
 
 output/trees2_rl_confidence_100.tif: img_raw/trees2_blurred.jpg deconvolve_rl.py
 	mkdir -p output
-	time ./deconvolve_rl.py img_raw/trees2_blurred.jpg output/trees2_rl.tif 25 2127 1414 255 255 100 8 1e-3
+	time ./deconvolve_rl.py img_raw/trees2_blurred.jpg output/trees2_rl_confidence_100.tif 25 2127 1414 255 255 100 8 1e-3
 
 output/trees2_rl_confidence_10.tif: img_raw/trees2_blurred.jpg deconvolve_rl.py
 	mkdir -p output
-	time ./deconvolve_rl.py img_raw/trees2_blurred.jpg output/trees2_rl.tif 25 2127 1414 255 255 10 8 1e-3
+	time ./deconvolve_rl.py img_raw/trees2_blurred.jpg output/trees2_rl_confidence_10.tif 25 2127 1414 255 255 10 8 1e-3
 
 .PHONY: deblur
 deblur: output/trees2_simple.jpg output/trees2_simple_blur_aligned.jpg output/trees2_simple_kernel_unaligned.jpg output/trees2_simple_blur_aligned_kernel_unaligned.jpg output/trees2_wiener.jpg output/trees2_rl.tif output/trees2_rl_neighbors_4.tif output/trees2_rl_neighbors_2.tif output/trees2_rl_confidence_100.tif output/trees2_rl_confidence_10.tif

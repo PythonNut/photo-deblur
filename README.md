@@ -7,6 +7,7 @@ Done as part of Spring 2018 Camera Lab at Harvey Mudd College.
 ## Dependencies
 
 * [Python 3](https://www.python.org/)
+* [Tcl/Tk](http://tcl.sourceforge.net/)
 * [Hugin](http://hugin.sourceforge.net/)
 
 ### Setup on macOS
@@ -34,15 +35,33 @@ Install Hugin:
     $ brew cask install hugin
     $ ln -s /Applications/Hugin/Hugin.app/Contents/MacOS/align_image_stack /usr/local/bin/
 
+### Setup on Arch Linux
+
+Install Python:
+
+    $ sudo pacman -Sy python
+
+Install Python dependencies in a virtual environment:
+
+    $ python -m venv ~/.virtualenvs/photo-deblur
+    $ source ~/.virtualenvs/photo-deblur/bin/activate
+    $ pip install -r requirements.txt
+
+Install Tcl/Tk:
+
+    $ sudo pacman -Sy tk
+
+Install Hugin:
+
+    $ sudo pacman -Sy hugin
+
 ## Usage
 
-Align the raw images:
+Run all the experiments:
 
-    $ make align
+    $ make
 
-Estimate the kernel of the focus blur:
-
-    $ make kernel
+(Refer to `Makefile` for more advanced usage.)
 
 ## Further reading
 

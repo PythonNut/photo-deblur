@@ -3,3 +3,5 @@
 /kernel/
 /output/
 /work/
+
+/fftw_wisdom.pickle

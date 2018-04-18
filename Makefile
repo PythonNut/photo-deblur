@@ -26,12 +26,36 @@ kernel/trees1_data.h5 kernel/trees1_kernel.png: img_aligned/trees1_blurred.tif i
 	mkdir -p kernel
 	time ./compute_kernel.py img_aligned/trees1_blurred.tif img_aligned/trees1_sharp.tif kernel/trees1_data.h5 kernel/trees1_kernel.png
 
-.PHONY: kernel
-kernel: kernel/trees1_data.h5 kernel/trees1_kernel.png
+kernel/trees1_data_unaligned.h5 kernel/trees1_kernel_unaligned.png: img_raw/trees1_blurred.jpg img_raw/trees1_sharp.jpg compute_kernel.py
+	mkdir -p kernel
+	time ./compute_kernel.py img_raw/trees1_blurred.jpg img_raw/trees1_sharp.jpg kernel/trees1_data_unaligned.h5 kernel/trees1_kernel_unaligned.png
 
-output/trees2_deconvolved.jpg: img_raw/trees2_blurred.jpg kernel/trees1_data.h5 deblur.py
+.PHONY: kernel
+kernel: kernel/trees1_data.h5 kernel/trees1_kernel.png kernel/trees1_data_unaligned.h5 kernel/trees1_kernel_unaligned.png
+
+output/trees2_simple.jpg: img_raw/trees2_blurred.jpg kernel/trees1_data.h5 deblur.py
 	mkdir -p output
-	time ./deblur.py img_raw/trees2_blurred.jpg kernel/trees1_data.h5 output/trees2_deconvolved.jpg
+	time ./deblur.py img_raw/trees2_blurred.jpg kernel/trees1_data.h5 output/trees2_simple.jpg
+
+output/trees2_simple_blur_aligned.jpg: img_aligned/trees2_blurred.tif kernel/trees1_data.h5 deblur.py
+	mkdir -p output
+	time ./deblur.py img_aligned/trees2_blurred.tif kernel/trees1_data.h5 output/trees2_simple_blur_aligned.jpg
+
+output/trees2_simple_kernel_unaligned.jpg: img_raw/trees2_blurred.jpg kernel/trees1_data_unaligned.h5 deblur.py
+	mkdir -p output
+	time ./deblur.py img_raw/trees2_blurred.jpg kernel/trees1_data_unaligned.h5 output/trees2_simple_kernel_unaligned.jpg
+
+output/trees2_simple_blur_aligned_kernel_unaligned.jpg: img_aligned/trees2_blurred.tif kernel/trees1_data_unaligned.h5 deblur.py
+	mkdir -p output
+	time ./deblur.py img_aligned/trees2_blurred.tif kernel/trees1_data_unaligned.h5 output/trees2_simple_blur_aligned_kernel_unaligned.jpg
+
+output/trees2_wiener.jpg: img_raw/trees2_blurred.jpg kernel/trees1_data.h5 deblur_wiener.py
+	mkdir -p output
+	time ./deblur_wiener.py img_raw/trees2_blurred.jpg kernel/trees1_data.h5 output/trees2_wiener.jpg
 
 .PHONY: deblur
-deblur: output/trees2_deconvolved.jpg
+deblur: output/trees2_simple.jpg output/trees2_simple_blur_aligned.jpg output/trees2_simple_kernel_unaligned.jpg output/trees2_simple_blur_aligned_kernel_unaligned.jpg
+
+.PHONY: clean
+clean:
+	rm -rf img_aligned kernel output work

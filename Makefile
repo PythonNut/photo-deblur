@@ -57,6 +57,10 @@ output/trees2_wiener.jpg: img_raw/trees2_blurred.jpg kernel/trees1_data.h5 deblu
 	mkdir -p output
 	time ./deblur_wiener.py img_raw/trees2_blurred.jpg kernel/trees1_data_wiener.h5 output/trees2_wiener.jpg
 
+output/trees2_rl.tif: img_raw/trees2_blurred.jpg deconvolve_rl.py
+	mkdir -p output
+	time ./deconvolve_rl.py img_raw/trees2_blurred.jpg output/trees2_rl.tif
+
 .PHONY: deblur
 deblur: output/trees2_simple.jpg output/trees2_simple_blur_aligned.jpg output/trees2_simple_kernel_unaligned.jpg output/trees2_simple_blur_aligned_kernel_unaligned.jpg output/trees2_wiener.jpg
 

@@ -1,0 +1,4 @@
+[submodule "Image-Cases-Studies"]
+	path = Image-Cases-Studies
+	url = git@github.com:raxod502/Image-Cases-Studies.git
+	ignore = dirty

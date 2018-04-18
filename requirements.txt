@@ -1,10 +1,14 @@
 cycler==0.10.0
+Cython==0.28.2
 decorator==4.3.0
 h5py==2.8.0rc1
 imageio==2.3.0
 kiwisolver==1.0.1
+llvmlite==0.22.0
 matplotlib==2.2.2
+mpmath==1.0.0
 networkx==2.1
+numba==0.37.0
 numpy==1.14.2
 Pillow==5.0.0
 pyFFTW==0.10.4
@@ -15,3 +19,4 @@ PyWavelets==0.5.2
 scikit-image==0.13.1
 scipy==1.0.1
 six==1.11.0
+sympy==1.1.1
